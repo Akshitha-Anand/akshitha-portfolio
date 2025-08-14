@@ -23,26 +23,23 @@
      -webkit-background-clip: text;
      background-clip: text; 
      -webkit-text-fill-color: transparent;
-}
+    }
     .navbar-brand, .nav-link {
       color: white !important;
     }
-   main {
+    main {
       flex: 1;
     }
-
     .img-wrapper {
       max-width: 360px;
       margin: 0 auto;
       filter: drop-shadow(0 0 30px rgba(138, 43, 226, 0.4)); 
       transition: transform 0.3s ease, filter 0.3s ease;
     }
-
     .img-wrapper:hover {
       transform: scale(1.05);
       filter: drop-shadow(0 0 50px rgba(186, 85, 211, 0.6));
     }
-
     .blob-img {
       width: 100%;
       clip-path: url(#blobPath);
@@ -50,7 +47,6 @@
       object-fit: cover;
       display: block;
     }
-
     footer {
       background-color: #0f0f1c;
       color: #ffffff;
@@ -108,32 +104,26 @@
       color: #00ffff;
     }
    .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* exactly 2 columns */
-  gap: 2rem;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-
-.project-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  padding: 1.5rem;
-  border-radius: 1rem;
-  transition: all 0.4s ease;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
-}
-
-.project-card:hover {
-  transform: scale(1.03);
-  border: 1px solid rgba(186, 85, 211, 0.5); /* light violet glow */
-  box-shadow: 0 0 25px rgba(186, 85, 211, 0.4);
-}
-
-    
-    
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); 
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .project-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      padding: 1.5rem;
+      border-radius: 1rem;
+      transition: all 0.4s ease;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+    }
+    .project-card:hover {
+      transform: scale(1.03);
+      border: 1px solid rgba(186, 85, 211, 0.5); /* light violet glow */
+      box-shadow: 0 0 25px rgba(186, 85, 211, 0.4);
+    }
   </style>
 </head>
 <body>
@@ -142,10 +132,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center" href="#home">
-  <img src="./assets/AA logo.png" alt="Logo" style="height: 50px; width: auto; " class="me-2">
-</a>
-
-
+    <img src="./assets/AA logo.png" alt="Logo" style="height: 50px; width: auto; " class="me-2">
+    </a>
+    
     <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -302,7 +291,7 @@ const coder = {
   <div class="container">
     <h2 class="text-center highlight mb-4">Let's Connect!</h2>
     <p class="text-center mb-4">Interested in building something impactful together? Let’s get in touch.</p>
-    <form action="https://formspree.io/f/your-form-id" method="POST" class="row g-3">
+    <form action="https://formspree.io/f/mrbldkzk" method="POST" class="row g-3">
       <div class="col-md-6"><input type="text" name="name" class="form-control" placeholder="Your Name" required></div>
       <div class="col-md-6"><input type="email" name="email" class="form-control" placeholder="Your Email" required></div>
       <div class="col-12"><textarea name="message" class="form-control" rows="5" placeholder="Your Message" required></textarea></div>
@@ -334,7 +323,41 @@ const coder = {
     </clipPath>
   </defs>
 </svg>
+<script>
+const form = document.getElementById('contactForm');
+
+form.addEventListener('submit', async function(event) {
+  event.preventDefault();
+  
+  const formData = new FormData(form);
+  const status = document.createElement("p");
+  
+  try {
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+    
+    if (response.ok) {
+      status.textContent = "✅ Thanks! Your message has been sent.";
+      status.style.color = "lightgreen";
+      form.appendChild(status);
+      form.reset();
+    } else {
+      status.textContent = "❌ Oops! There was a problem sending your message.";
+      status.style.color = "red";
+      form.appendChild(status);
+    }
+  } catch (error) {
+    status.textContent = "❌ Network error. Please try again later.";
+    status.style.color = "red";
+    form.appendChild(status);
+  }
+});
+</script>
 
 </body>
 </html>
+
 
